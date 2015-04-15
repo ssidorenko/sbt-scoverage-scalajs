@@ -11,4 +11,5 @@ and this line to your build.sbt
     enablePlugins(ScoverageScalaJSSbtPlugin)
 
 then, run
+
     sbt clean coverage test
