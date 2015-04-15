@@ -10,6 +10,6 @@ and this line to your build.sbt
   
     enablePlugins(ScoverageScalaJSSbtPlugin)
 
-then, run
+Run `set scalaJSStage in Global := FastOptStage` in sbt to enable Node.JS (scoverage doesn't work with Rhino)
 
-    sbt clean coverage test
+then, run `sbt clean coverage test` to run the tests with scoverage enabled.
