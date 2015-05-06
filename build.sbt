@@ -1,8 +1,10 @@
+import bintray.Keys._
+
 name := "sbt-scoverage-scalajs"
 
-organization := "org.scoverage"
+organization := "ch.sidorenko.scoverage"
 
-version := "1.0.5-SNAPSHOT"
+version := "1.0.5"
 
 scalaVersion := "2.10.4"
 
@@ -11,16 +13,23 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-encoding", "utf
 sbtPlugin := true
 
 resolvers += Resolver.mavenLocal
-resolvers += Classpaths.sbtPluginReleases
 
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.0.5-SNAPSHOT")
+// resolvers += Classpaths.sbtPluginReleases
+
+resolvers += Resolver.url("sbt-plugins",
+    url("https://dl.bintray.com/ssidorenko/sbt-plugins/"))(Resolver.ivyStylePatterns)
+
+addSbtPlugin("ch.sidorenko.scoverage" % "sbt-scoverage" % "1.0.5-JS3")
+
 addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.2")
 
-
-publishTo := Some(Resolver.url("sbt-plugin-releases",
-  new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns))
-
 publishMavenStyle := false
+
+bintrayPublishSettings
+
+repository in bintray := "sbt-plugins"
+
+bintrayOrganization in bintray := None
 
 publishArtifact in Test := false
 
